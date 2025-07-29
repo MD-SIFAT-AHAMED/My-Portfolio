@@ -28,7 +28,7 @@ const Education = () => {
   ];
 
   return (
-    <section className="px-4 py-12 max-w-4xl mx-auto" id="education">
+    <section className="px-4 py-12 max-w-4xl mx-auto" id="/education">
       <motion.h2
         className="text-3xl font-bold mb-10 text-center text-base-content"
         initial={{ opacity: 0, y: -20 }}
