@@ -10,6 +10,7 @@ import {
   FaProjectDiagram,
   FaBlog,
   FaEnvelope,
+  FaGraduationCap,
 } from "react-icons/fa";
 // import resume from '../../assets/resume.pdf';
 
@@ -26,6 +27,11 @@ const Navbar = () => {
       icon: <FaProjectDiagram className="inline" />,
     },
     { name: "Blog", path: "/blog", icon: <FaBlog className="inline" /> },
+    {
+      name: "Education",
+      path: "/education",
+      icon: <FaGraduationCap className="inline" />,
+    },
     {
       name: "Contact",
       path: "/contact",
@@ -60,7 +66,7 @@ const Navbar = () => {
         <div className="hidden lg:flex items-center gap-4">
           {/* <ThemeToggle /> */}
           <Button variant="primary">
-            <a href={'resume'} download>
+            <a href={"resume"} download>
               RESUME
             </a>
           </Button>
@@ -116,7 +122,7 @@ const Navbar = () => {
           <div className="flex justify-center items-center gap-4">
             {/* <ThemeToggle /> */}
             <Button onClick={handleLinkClick} variant="primary">
-              <a href={'resume'} download>
+              <a href={"resume"} download>
                 RESUME
               </a>
             </Button>
