@@ -1,5 +1,5 @@
 import { useState } from "react";
-// import Button from "../ui/Button";
+import Button from "../Ui/Button";
 // import ThemeToggle from "../ui/ThemeToggle";
 // import Logo from "./Logo";
 import { GiHamburgerMenu } from "react-icons/gi";
@@ -59,11 +59,11 @@ const Navbar = () => {
         {/* Buttons - large screens */}
         <div className="hidden lg:flex items-center gap-4">
           {/* <ThemeToggle /> */}
-          {/* <Button variant="primary">
+          <Button variant="primary">
             <a href={'resume'} download>
               RESUME
             </a>
-          </Button> */}
+          </Button>
         </div>
 
         {/* Hamburger - small screens */}
@@ -115,11 +115,11 @@ const Navbar = () => {
           {/* Resume & Theme Toggle */}
           <div className="flex justify-center items-center gap-4">
             {/* <ThemeToggle /> */}
-            {/* <Button onClick={handleLinkClick} variant="primary">
+            <Button onClick={handleLinkClick} variant="primary">
               <a href={'resume'} download>
                 RESUME
               </a>
-            </Button> */}
+            </Button>
           </div>
         </div>
       </div>

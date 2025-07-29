@@ -1,6 +1,6 @@
 import Lottie from "lottie-react";
 import coding from "../../assets/lottis/conding.json";
-// import Button from '../ui/Button';
+import Button from "../Shared/Ui/Button";
 import { Typewriter } from "react-simple-typewriter";
 import AnimatedSocialIcon from "../Shared/AnimatedSocialIcon/AnimatedSocialIcon";
 import { motion } from "framer-motion";
@@ -60,8 +60,14 @@ const Hero = () => {
           <AnimatedSocialIcon />
         </motion.div>
         <div className="flex gap-2 md:gap-4 mt-2">
-          {/* <Button>   <a href="#/contact">Contact Me</a></Button>
-                    <Button variant='outline'> <a href={'resume'} download>Get Resume</a></Button> */}
+          <Button>
+            <a href="#/contact">Contact Me</a>
+          </Button>
+          <Button variant="outline">
+            <a href={"resume"} download>
+              Get Resume
+            </a>
+          </Button>
         </div>
       </motion.div>
 
