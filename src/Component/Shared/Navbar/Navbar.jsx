@@ -13,6 +13,7 @@ import {
   FaGraduationCap,
 } from "react-icons/fa";
 import ThemeToggle from "../Ui/ThemeToggle";
+import Logo from "../Logo/Logo";
 // import resume from '../../assets/resume.pdf';
 
 const Navbar = () => {
@@ -49,9 +50,9 @@ const Navbar = () => {
 
   return (
     <nav className="backdrop-blur-xl bg-gradient-to-t from-primary/2 via-base-100/50 to-primary/8 fixed top-0 left-0 w-full z-50 border-b border-dashed border-primary/30 ">
-      <div className="max-w-6xl mx-auto px-4 py-3 md:py-4 flex items-center justify-between">
+      <div className="max-w-screen-2xl w-11/12 mx-auto px-4 py-3 md:py-4 flex items-center justify-between">
         {/* Logo */}
-        <div className="w-12 h-10 md:h-12">{/* <Logo /> */}</div>
+        <div className="w-12 h-10 md:h-12">{<Logo />}</div>
         {/* Nav links - large screens */}
         <ul className="hidden lg:flex gap-1 text-sm font-medium border-0">
           {navLinks.map((link) => (
@@ -77,7 +78,7 @@ const Navbar = () => {
         <div className="lg:hidden">
           <button
             onClick={() => setIsOpen(true)}
-            className="py-2 px-2 bg-primary rounded-sm text-lg"
+            className="py-2 px-2 bg-primary rounded-sm text-xl"
           >
             <GiHamburgerMenu />
           </button>
@@ -121,7 +122,7 @@ const Navbar = () => {
 
           {/* Resume & Theme Toggle */}
           <div className="flex justify-center items-center gap-4">
-            {/* <ThemeToggle /> */}
+            {<ThemeToggle />}
             <Button onClick={handleLinkClick} variant="primary">
               <a href={"resume"} download>
                 RESUME

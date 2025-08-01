@@ -9,7 +9,7 @@ import { motion } from "framer-motion";
 
 const Hero = () => {
   return (
-    <section className="flex flex-col md:flex-row items-center justify-between gap-8 px-4">
+    <section className="flex flex-col md:flex-row items-center justify-between gap-8 px-4 mt-25 md:mt-45">
       {/* Left: Text Content */}
       <motion.div
         className="flex flex-col items-start gap-4"

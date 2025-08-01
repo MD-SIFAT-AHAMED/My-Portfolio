@@ -8,7 +8,7 @@ import Education from "../../Component/Home/Education";
 
 const Home = () => {
   return (
-    <div className="max-w-screen-2xl w-11/12 mx-auto space-y-20">
+    <div>
       <Hero />
       <About />
       <Skills />

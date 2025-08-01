@@ -6,13 +6,13 @@ import Footer from "../Component/Shared/Footer/Footer";
 const MainLayout = () => {
   return (
     <div>
-      <nav className="max-w-screen-2xl w-11/12 mx-auto">
+      <nav >
         <Navbar />
       </nav>
-      <main className="max-w-screen-2xl w-11/12 mx-auto mt-40">
+      <main className="max-w-screen-2xl w-11/12 mx-auto space-y-20">
         <Outlet />
       </main>
-      <footer className="">
+      <footer>
         <Footer />
       </footer>
     </div>
