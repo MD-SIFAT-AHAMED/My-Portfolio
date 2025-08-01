@@ -126,31 +126,20 @@ const Contact = () => {
     {
       icon: <FaLinkedin className="text-xl" />,
       name: "LinkedIn",
-      url: "https://linkedin.com/in/shihab-dev",
+      url: "https://www.linkedin.com/in/md-sifat-ahamed/",
       color: "hover:text-primary",
     },
-    {
-      icon: <FaDiscord className="text-xl" />,
-      name: "Discord",
-      url: "https://discord.com/users/shihab.dev",
-      color: "hover:text-primary",
-    },
+
     {
       icon: <FaGithub className="text-xl" />,
       name: "GitHub",
-      url: "https://github.com/shihabuddin-dev",
+      url: "https://github.com/MD-SIFAT-AHAMED",
       color: "hover:text-primary",
     },
     {
       icon: <FaFacebook className="text-xl" />,
       name: "Facebook",
-      url: "https://www.facebook.com/shihabuddinReal/",
-      color: "hover:text-primary",
-    },
-    {
-      icon: <FaStackOverflow className="text-xl" />,
-      name: "Stack Overflow",
-      url: "https://stackoverflow.com/users/29589367/shihab-dev",
+      url: "https://www.facebook.com/heyiamsifatahamed/",
       color: "hover:text-primary",
     },
   ];

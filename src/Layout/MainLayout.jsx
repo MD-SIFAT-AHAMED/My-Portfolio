@@ -12,8 +12,9 @@ const MainLayout = () => {
       <main className="max-w-screen-2xl w-11/12 mx-auto mt-40">
         <Outlet />
       </main>
-
-      <Footer />
+      <footer className="">
+        <Footer />
+      </footer>
     </div>
   );
 };

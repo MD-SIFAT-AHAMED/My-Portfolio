@@ -3,30 +3,21 @@ import { motion } from 'framer-motion';
 
 const socialLinks = [
     {
-        href: 'https://linkedin.com/in/shihab-dev',
+        href: 'https://www.linkedin.com/in/md-sifat-ahamed/',
         icon: <FaLinkedin />,
         label: 'LinkedIn',
     },
     {
-        href: 'https://github.com/shihabuddin-dev',
+        href: 'https://github.com/MD-SIFAT-AHAMED',
         icon: <FaGithub />,
         label: 'GitHub',
     },
     {
-        href: 'https://www.facebook.com/shihabuddinReal/',
+        href: 'https://www.facebook.com/heyiamsifatahamed/',
         icon: <FaFacebook />,
         label: 'Facebook',
     },
-    {
-        href: 'https://discord.com/users/shihab.dev',
-        icon: <FaDiscord />,
-        label: 'Discord',
-    },
-    {
-        href: 'https://stackoverflow.com/users/29589367/shihab-dev',
-        icon: <FaStackOverflow />,
-        label: 'Stack Overflow',
-    },
+    
 ];
 
 const iconVariants = {

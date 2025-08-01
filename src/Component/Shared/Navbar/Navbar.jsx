@@ -12,6 +12,7 @@ import {
   FaEnvelope,
   FaGraduationCap,
 } from "react-icons/fa";
+import ThemeToggle from "../Ui/ThemeToggle";
 // import resume from '../../assets/resume.pdf';
 
 const Navbar = () => {
@@ -64,7 +65,7 @@ const Navbar = () => {
         </ul>
         {/* Buttons - large screens */}
         <div className="hidden lg:flex items-center gap-4">
-          {/* <ThemeToggle /> */}
+          {<ThemeToggle />}
           <Button variant="primary">
             <a href={"resume"} download>
               RESUME
