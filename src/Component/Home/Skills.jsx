@@ -203,7 +203,7 @@ const Skills = () => {
 
   return (
     <section id="/skills" className="scroll-mt-30">
-      <div className="max-w-5xl mx-auto px-4">
+      <div className="max-w-5xl mx-auto mb-20">
         {/* Section Heading */}
         <SectionHeading>My Skills</SectionHeading>
         {/* Tab Toggle */}

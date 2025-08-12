@@ -28,7 +28,7 @@ const Navbar = () => {
       path: "/projects",
       icon: <FaProjectDiagram className="inline" />,
     },
-    { name: "Blog", path: "/blog", icon: <FaBlog className="inline" /> },
+    // { name: "Blog", path: "/blog", icon: <FaBlog className="inline" /> },
     {
       name: "Education",
       path: "/education",

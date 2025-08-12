@@ -24,9 +24,10 @@ const Contact = () => {
 
   // Load EmailJS script
   useEffect(() => {
+    console.log(import.meta.env.VITE_EMAIL_PUBLIC_KEY)
     const script = document.createElement("script");
     script.src =
-      "https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js";
+      "https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js";
     script.async = true;
     script.onload = () => {
       if (window.emailjs) {
@@ -74,7 +75,7 @@ const Contact = () => {
         import.meta.env.VITE_EMAIL_SERVICE_ID, // EmailJS service ID
         import.meta.env.VITE_EMAIL_TEMPLATE_ID, // EmailJS template ID
         {
-          to_name: "Shihab Uddin",
+          to_name: "MD SIFAT AHAMED",
           from_name: formData.name,
           from_email: formData.email,
           subject: formData.subject,
@@ -176,7 +177,7 @@ const Contact = () => {
               <div className="mb-6 p-4 bg-base-100 border border-primary/40 text-red-500 rounded-md">
                 <p className="text-sm sm:text-base">
                   Failed to send message. Please contact me directly at
-                  shihabuddin.dev@gmail.com
+                  mdsifat978@gmail.com
                 </p>
               </div>
             )}
