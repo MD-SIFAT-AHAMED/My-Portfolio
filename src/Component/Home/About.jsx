@@ -1,4 +1,4 @@
-import sifat from "../../assets/img/sifat.ahamed2.jpeg";
+import sifat from "../../assets/img/sifat.jpg";
 import { motion } from "framer-motion";
 import SectionHeading from "../Shared/SectionHeading/SectionHeading";
 import Button from "../Shared/Ui/Button";
@@ -38,8 +38,8 @@ const About = () => {
             <div className="relative bg-gradient-to-br from-primary/10 to-secondary/10 p-2 rounded-md shadow-2xl">
               <img
                 src={sifat}
-                alt="sifat Uddin - MERN Stack Developer"
-                className="w-full h-76 md:h-120 object-cover duration-900 transition transform ease-in-out rounded-md shadow-lg grayscale-70 hover:grayscale-0  hover:scale-105 hover:shadow-lg"
+                alt="sifat ahamed - MERN Stack Developer"
+                className="w-full h-76 md:h-120 object-cover duration-900 transition transform ease-in-out rounded-md shadow-lg grayscale-20 hover:grayscale-0  hover:scale-105 hover:shadow-lg"
               />
             </div>
 

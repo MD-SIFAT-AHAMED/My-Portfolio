@@ -5,11 +5,11 @@ import SectionHeading from "../Shared/SectionHeading/SectionHeading";
 const Education = () => {
   const educationData = [
     {
-      level: "Secondary School Certificate (SSC)",
-      institute: "Baligoan High School",
-      group: "Science",
-      result: "GPA: 4.33",
-      year: "2020",
+      level: "Bachelor of Science (BSc) — Running",
+      institute: "Uttara University",
+      group: "Computer Science & Engineering",
+      result: "—",
+      year: "2025 - Present",
     },
     {
       level: "Diploma in Engineering",
@@ -19,11 +19,11 @@ const Education = () => {
       year: "2024",
     },
     {
-      level: "Bachelor of Science (BSc) — Running",
-      institute: "Uttara University",
-      group: "Computer Science & Engineering",
-      result: "—",
-      year: "2025 - Present",
+      level: "Secondary School Certificate (SSC)",
+      institute: "Baligoan High School",
+      group: "Science",
+      result: "GPA: 4.33",
+      year: "2020",
     },
   ];
 
