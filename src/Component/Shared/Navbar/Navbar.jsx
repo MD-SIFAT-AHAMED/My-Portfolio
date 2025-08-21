@@ -1,7 +1,5 @@
 import { useState } from "react";
 import Button from "../Ui/Button";
-// import ThemeToggle from "../ui/ThemeToggle";
-// import Logo from "./Logo";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoIosClose } from "react-icons/io";
 import {
@@ -14,7 +12,7 @@ import {
 } from "react-icons/fa";
 import ThemeToggle from "../Ui/ThemeToggle";
 import Logo from "../Logo/Logo";
-// import resume from '../../assets/resume.pdf';
+import resume from '../../../assets/MD_SIFAT_AHAMED-(Front-end_dev).pdf';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -68,7 +66,7 @@ const Navbar = () => {
         <div className="hidden lg:flex items-center gap-4">
           {<ThemeToggle />}
           <Button variant="primary">
-            <a href={"resume"} download>
+            <a href={resume} download>
               RESUME
             </a>
           </Button>
@@ -124,7 +122,7 @@ const Navbar = () => {
           <div className="flex justify-center items-center gap-4">
             {<ThemeToggle />}
             <Button onClick={handleLinkClick} variant="primary">
-              <a href={"resume"} download>
+              <a href={resume} download>
                 RESUME
               </a>
             </Button>
