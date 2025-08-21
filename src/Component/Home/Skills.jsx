@@ -61,11 +61,17 @@ const skillsData = {
       borderColor: "border-cyan-400",
       shadowColor: "hover:shadow-cyan-400/40",
     },
+    // {
+    //   name: "Next.js",
+    //   icon: <SiNextdotjs className="text-base-content" />,
+    //   borderColor: "border-base-content",
+    //   shadowColor: "hover:shadow-base-content/40",
+    // },
     {
-      name: "Next.js",
-      icon: <SiNextdotjs className="text-base-content" />,
-      borderColor: "border-base-content",
-      shadowColor: "hover:shadow-base-content/40",
+      name: "JWT",
+      icon: <SiJsonwebtokens className="text-amber-500" />,
+      borderColor: "border-amber-500",
+      shadowColor: "hover:shadow-amber-500/40",
     },
     {
       name: "Node.js",
@@ -105,12 +111,6 @@ const skillsData = {
       icon: <FaGithub className="text-base-content" />,
       borderColor: "border-base-content",
       shadowColor: "hover:shadow-base-content/30",
-    },
-    {
-      name: "JWT",
-      icon: <SiJsonwebtokens className="text-amber-500" />,
-      borderColor: "border-amber-500",
-      shadowColor: "hover:shadow-amber-500/40",
     },
     {
       name: "Atlas",

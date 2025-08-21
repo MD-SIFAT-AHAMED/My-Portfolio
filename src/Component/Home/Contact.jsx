@@ -24,7 +24,7 @@ const Contact = () => {
 
   // Load EmailJS script
   useEffect(() => {
-    console.log(import.meta.env.VITE_EMAIL_PUBLIC_KEY)
+    console.log(import.meta.env.VITE_EMAIL_PUBLIC_KEY);
     const script = document.createElement("script");
     script.src =
       "https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js";
@@ -61,7 +61,6 @@ const Contact = () => {
     setIsSubmitting(true);
     setSubmitStatus(null);
 
-    // Check if EmailJS is properly configured
     if (!window.emailjs) {
       console.error("EmailJS not loaded");
       setSubmitStatus("error");
@@ -70,26 +69,22 @@ const Contact = () => {
     }
 
     try {
-      // Send email using EmailJS
       const result = await window.emailjs.send(
-        import.meta.env.VITE_EMAIL_SERVICE_ID, // EmailJS service ID
-        import.meta.env.VITE_EMAIL_TEMPLATE_ID, // EmailJS template ID
+        import.meta.env.VITE_EMAIL_SERVICE_ID, 
+        import.meta.env.VITE_EMAIL_TEMPLATE_ID, 
         {
-          to_name: "MD SIFAT AHAMED",
+          to_email: "mdsifat978@gmail.com", 
           from_name: formData.name,
-          from_email: formData.email,
-          subject: formData.subject,
-          message: formData.message,
-          reply_to: formData.email,
-          contact_number: formData.phone || "Not provided",
-          sender_info: `Name: ${formData.name}\nEmail: ${formData.email}\nSubject: ${formData.subject}\n\nMessage:\n${formData.message}`,
+          from_email: formData.email, 
+          subject: formData.subject, 
+          message: formData.message, 
+          reply_to: formData.email, 
         }
       );
 
       console.log("Email sent successfully:", result);
       setSubmitStatus("success");
 
-      // Reset form
       setFormData({
         name: "",
         email: "",
@@ -290,7 +285,7 @@ const Contact = () => {
               {contactInfo.map((info, index) => (
                 <a
                   key={index}
-                  href={info.link}
+                  // href={info.link}
                   className="group flex items-center gap-3 sm:gap-4 p-3 sm:p-4 bg-gradient-to-bl from-base-200/15 to-base-200/40 backdrop-blur-sm  rounded-md border border-primary/20 hover:shadow-md hover:shadow-primary/20 hover:border-primary/40 transition-all duration-300 transform hover:-translate-y-1"
                 >
                   <div className="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 bg-primary/10 rounded-md group-hover:bg-primary/20 transition-colors duration-300">
