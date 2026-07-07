@@ -1,150 +1,119 @@
 import sifat from "../../assets/img/sifat.jpg";
 import { motion } from "framer-motion";
 import SectionHeading from "../Shared/SectionHeading/SectionHeading";
-import Button from "../Shared/Ui/Button";
 
 const skills = [
-  "JavaScript",
   "React.js",
-  "Node.js",
-  "MongoDB",
-  "Express.js",
   "Tailwind CSS",
-  "Git & GitHub",
+  "Node.js",
+  "Express.js",
+  "MySQL",
+  "MongoDB",
+  "Firebase",
+  "Java",
+  "Spring Boot",
   "REST APIs",
   "JWT",
+  "Git & GitHub",
 ];
 
 const About = () => {
   return (
-    <section
-      id="/about"
-      className="scroll-mt-20 bg-gradient-to-b from-base-100 to-base-200/20 px-4 md:px-0 py-8 md:py-12 rounded-md"
-    >
-      <SectionHeading>About Me</SectionHeading>
-      <div className="grid md:grid-cols-2 gap-8 sm:gap-10 lg:gap-20 items-center">
-        {/* Image Section */}
-        <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="relative order-2 lg:order-1"
-        >
-          <div className="relative max-w-xs sm:max-w-sm mx-auto lg:max-w-md">
-            {/* Background decoration */}
-            <div className="absolute -inset-4 sm:-inset-6 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-md blur-3xl opacity-60"></div>
+    <section id="about" className="relative py-24 md:py-32 overflow-hidden">
+      {/* Background Blur */}
+      <div className="absolute top-0 left-0 w-72 h-72 bg-primary/10 blur-3xl rounded-full -z-10"></div>
 
-            {/* Image container */}
-            <div className="relative bg-gradient-to-br from-primary/10 to-secondary/10 p-2 rounded-md shadow-2xl">
+      <SectionHeading>About Me</SectionHeading>
+
+      <div className="grid lg:grid-cols-12 gap-5 lg:gap-10 items-center mt-16">
+        {/* LEFT SIDE */}
+        <motion.div
+          initial={{ opacity: 0, x: -60 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="lg:col-span-6 flex justify-center"
+        >
+          <div className="relative">
+            {/* Glow */}
+            <div className="absolute inset-0 bg-primary/20 blur-3xl rounded-[40px]"></div>
+            {/* Main Image */}
+            <div className="relative overflow-hidden rounded-[30px] border border-white/10 bg-base-200/40 backdrop-blur-md shadow-2xl">
               <img
                 src={sifat}
-                alt="sifat ahamed - MERN Stack Developer"
-                className="w-full h-76 md:h-120 object-cover duration-900 transition transform ease-in-out rounded-md shadow-lg grayscale-20 hover:grayscale-0  hover:scale-105 hover:shadow-lg"
+                alt="MD Sifat Ahamed"
+                className="w-[300px] sm:w-[340px] md:w-[380px] lg:w-[420px] h-[340px] sm:h-[380px] md:h-[430px] lg:h-[470px] object-cover  object-top    transition duration-500 hover:scale-105"
               />
             </div>
 
-            {/* Floating badge */}
-            <div className="absolute -bottom-2 -right-2 sm:-bottom-4 sm:-right-1 md:-right-4 lg:-right-12">
-              <Button className="text-xs sm:text-sm px-2 sm:px-4 py-2">
-                Available for hire
-              </Button>
-            </div>
+            {/* Floating Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              className="absolute -bottom-6 -right-6 bg-base-100 border border-base-300 shadow-xl rounded-2xl px-5 py-4 backdrop-blur-md"
+            >
+              <h3 className="text-2xl font-bold text-primary">1+</h3>
+              <p className="text-sm text-base-content/70">Years Experience</p>
+            </motion.div>
           </div>
         </motion.div>
 
-        {/* Content Section */}
+        {/* RIGHT SIDE */}
         <motion.div
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="space-y-6 sm:space-y-8 order-1 lg:order-2"
+          initial={{ opacity: 0, x: 60 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="lg:col-span-6 space-y-8"
         >
-          <motion.div
-            className="space-y-4 sm:space-y-6"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-          >
-            <motion.div
-              className="space-y-3 sm:space-y-4 text-base md:text-lg text-base-content/70"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
-            >
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 1.0 }}
-              >
-                Hello! I'm{" "}
-                <strong className="text-base-content">Sifat Ahamed</strong>, a
-                passionate MERN Stack Developer focused on creating innovative
-                web solutions and user-friendly interfaces.
-              </motion.p>
+          {/* Heading */}
+          <div className="space-y-5">
+            <p className="text-base md:text-lg leading-relaxed text-base-content/70">
+              I’m currently working at DataSoft Systems Bangladesh Ltd.,
+              contributing to real-world enterprise systems including Rapid Pass
+              and MRT projects while continuously growing as a Full Stack
+              Software Developer.
+            </p>
 
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 1.2 }}
-              >
-                I specialize in building scalable applications using modern
-                technologies. I'm constantly learning and staying updated with
-                the latest industry trends to deliver cutting-edge solutions.
-              </motion.p>
-            </motion.div>
-          </motion.div>
+            <p className="text-base md:text-lg leading-relaxed text-base-content/70">
+              My expertise includes building modern web applications using
+              React.js, Node.js, Express.js, and MySQL, while also expanding my
+              backend development skills with Java and Spring Boot.
+            </p>
 
-          {/* Skills Section */}
-          <motion.div
-            className="space-y-3 sm:space-y-4"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.4 }}
-          >
-            <motion.h3
-              className="text-lg sm:text-xl font-semibold text-base-content flex items-center gap-2"
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 1.6 }}
-            >
-              <motion.span
-                className="w-1 h-5 sm:h-6 bg-primary rounded-full"
-                initial={{ scaleY: 0 }}
-                animate={{ scaleY: 1 }}
-                transition={{ duration: 0.6, delay: 1.8 }}
-              ></motion.span>
-              Technologies I work with:
-            </motion.h3>
-            <motion.div
-              className="flex flex-wrap gap-1.5 sm:gap-2 md:gap-3"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 2.0 }}
-            >
+            <p className="text-base md:text-lg leading-relaxed text-base-content/70">
+              I enjoy solving practical problems, optimizing user experiences,
+              and building software that is scalable, efficient, and impactful.
+            </p>
+          </div>
+
+          {/* Skills */}
+          <div className="space-y-5 pt-2">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-[2px] bg-primary"></div>
+
+              <h3 className="text-xl font-semibold">Technologies & Tools</h3>
+            </div>
+
+            <div className="flex flex-wrap gap-3">
               {skills.map((skill, index) => (
                 <motion.span
                   key={skill}
-                  initial={{ opacity: 0, scale: 0.8, y: 20 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  transition={{
-                    duration: 0.4,
-                    delay: 2.2 + index * 0.1,
-                    type: "spring",
-                    stiffness: 100,
-                  }}
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.05 }}
                   whileHover={{
-                    scale: 1.1,
-                    y: -3,
-                    transition: { duration: 0.2 },
+                    scale: 1.05,
+                    y: -2,
                   }}
-                  whileTap={{ scale: 0.95 }}
-                  className="px-2.5 sm:px-4 py-1 sm:py-1.5 bg-base-200 hover:bg-primary hover:text-primary-content rounded-full text-xs sm:text-sm font-medium transition-all duration-100 cursor-default shadow-sm hover:shadow-md"
+                  className="px-4 py-2 rounded-xl bg-base-200 border border-base-300 hover:border-primary hover:bg-primary hover:text-white transition-all duration-300 text-sm font-medium cursor-default"
                 >
                   {skill}
                 </motion.span>
               ))}
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </motion.div>
       </div>
     </section>
