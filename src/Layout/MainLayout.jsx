@@ -1,18 +1,24 @@
 import React from "react";
-import Navbar from "../Component/Shared/Navbar/Navbar";
 import { Outlet } from "react-router";
+
+import Navbar from "../Component/Shared/Navbar/Navbar";
 import Footer from "../Component/Shared/Footer/Footer";
 
 const MainLayout = () => {
   return (
-    <div>
-      <nav >
+    <div className="min-h-screen bg-base-100 text-base-content overflow-x-hidden">
+      {/* Navbar */}
+      <header className="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-base-100/70 border-b border-white/5">
         <Navbar />
-      </nav>
-      <main className="max-w-screen-2xl w-11/12 mx-auto space-y-20">
+      </header>
+
+      {/* Main Content */}
+      <main className="max-w-screen-2xl mx-auto px-4 md:px-8 lg:px-12">
         <Outlet />
       </main>
-      <footer>
+
+      {/* Footer */}
+      <footer className="mt-24 border-t border-base-300/40">
         <Footer />
       </footer>
     </div>
