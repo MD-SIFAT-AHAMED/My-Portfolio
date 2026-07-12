@@ -18,7 +18,7 @@ const MainLayout = () => {
       </main>
 
       {/* Footer */}
-      <footer className="mt-24 border-t border-base-300/40">
+      <footer className="border-t border-base-300/40">
         <Footer />
       </footer>
     </div>

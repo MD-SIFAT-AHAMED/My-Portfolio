@@ -5,10 +5,9 @@ import {
   FaMapMarkerAlt,
   FaLinkedin,
   FaGithub,
-  FaStackOverflow,
   FaFacebook,
-  FaDiscord,
 } from "react-icons/fa";
+import { motion, AnimatePresence } from "framer-motion";
 import SectionHeading from "../Shared/SectionHeading/SectionHeading";
 import Button from "../Shared/Ui/Button";
 
@@ -22,16 +21,14 @@ const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null); // 'success' | 'error' | null
 
-  // Load EmailJS script
+  // Dynamic EmailJS script attachment layer
   useEffect(() => {
-    console.log(import.meta.env.VITE_EMAIL_PUBLIC_KEY);
     const script = document.createElement("script");
-    script.src =
-      "https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js";
+    script.src = "https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js";
     script.async = true;
     script.onload = () => {
       if (window.emailjs) {
-        window.emailjs.init(import.meta.env.VITE_EMAIL_PUBLIC_KEY); //  public key
+        window.emailjs.init(import.meta.env.VITE_EMAIL_PUBLIC_KEY);
       }
     };
     script.onerror = () => {
@@ -40,9 +37,7 @@ const Contact = () => {
     document.head.appendChild(script);
 
     return () => {
-      const existingScript = document.querySelector(
-        'script[src*="email.min.js"]'
-      );
+      const existingScript = document.querySelector('script[src*="email.min.js"]');
       if (existingScript) {
         document.head.removeChild(existingScript);
       }
@@ -69,28 +64,21 @@ const Contact = () => {
     }
 
     try {
-      const result = await window.emailjs.send(
-        import.meta.env.VITE_EMAIL_SERVICE_ID, 
-        import.meta.env.VITE_EMAIL_TEMPLATE_ID, 
+      await window.emailjs.send(
+        import.meta.env.VITE_EMAIL_SERVICE_ID,
+        import.meta.env.VITE_EMAIL_TEMPLATE_ID,
         {
-          to_email: "mdsifat978@gmail.com", 
+          to_email: "mdsifat978@gmail.com",
           from_name: formData.name,
-          from_email: formData.email, 
-          subject: formData.subject, 
-          message: formData.message, 
-          reply_to: formData.email, 
+          from_email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+          reply_to: formData.email,
         }
       );
 
-      console.log("Email sent successfully:", result);
       setSubmitStatus("success");
-
-      setFormData({
-        name: "",
-        email: "",
-        subject: "",
-        message: "",
-      });
+      setFormData({ name: "", email: "", subject: "", message: "" });
     } catch (error) {
       console.error("Email sending failed:", error);
       setSubmitStatus("error");
@@ -101,90 +89,170 @@ const Contact = () => {
 
   const contactInfo = [
     {
-      icon: <FaEnvelope className="text-2xl" />,
+      icon: <FaEnvelope />,
       title: "Email",
       value: "mdsifat978@gmail.com",
-      link: "mdsifat978@gmail.com",
+      link: "mailto:mdsifat978@gmail.com",
     },
     {
-      icon: <FaPhone className="text-2xl" />,
+      icon: <FaPhone />,
       title: "Phone / Whatsapp",
-      value: "+8801316132578",
+      value: "+880 1316-132578",
       link: "tel:+8801316132578",
     },
     {
-      icon: <FaMapMarkerAlt className="text-2xl" />,
+      icon: <FaMapMarkerAlt />,
       title: "Location",
       value: "Dhaka, Bangladesh",
+      link: null,
     },
   ];
+
   const socialLinks = [
     {
       icon: <FaLinkedin className="text-xl" />,
-      name: "LinkedIn",
       url: "https://www.linkedin.com/in/md-sifat-ahamed/",
-      color: "hover:text-primary",
     },
-
     {
       icon: <FaGithub className="text-xl" />,
-      name: "GitHub",
       url: "https://github.com/MD-SIFAT-AHAMED",
-      color: "hover:text-primary",
     },
     {
       icon: <FaFacebook className="text-xl" />,
-      name: "Facebook",
       url: "https://www.facebook.com/heyiamsifatahamed/",
-      color: "hover:text-primary",
     },
   ];
 
   const inputBase =
-    "w-full px-3 sm:px-4 py-2 sm:py-3 bg-base-100 border border-primary/20 rounded-md focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300 text-secondary placeholder-secondary/50 disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base";
+    "w-full px-4 py-3 bg-base-100 border border-base-content/10 rounded-xl focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all duration-300 text-base-content placeholder-base-content/40 text-sm md:text-base font-medium disabled:opacity-50";
 
   return (
-    <section
-      id="/contact"
-      className="flex flex-col items-center px-4 scroll-mt-30 mb-6"
-    >
-      <div>
-        {/* Section Title */}
-        <SectionHeading>Contact Me</SectionHeading>
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
-          {/* Contact Form - Left Side */}
-          <div className="bg-gradient-to-b from-base-200/15 to-base-200/30 backdrop-blur-sm p-6 sm:p-8 rounded-md border border-primary/20 shadow-lg">
-            <h3 className="text-xl sm:text-2xl font-bold text-primary mb-6">
-              Send Message
+    <section id="/contact" className="relative px-6 max-w-6xl mx-auto w-full overflow-hidden scroll-mt-20">
+      {/* Background Fluid Ambient Blob */}
+      <div className="absolute bottom-0 left-10 w-80 h-80 bg-primary/5 blur-[120px] rounded-full -z-10" />
+
+      {/* Header Container */}
+      <motion.div 
+        className="text-center mb-16"
+        initial={{ opacity: 0, y: -20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+      >
+        <SectionHeading>Get In Touch</SectionHeading>
+        <p className="text-base-content/60 text-sm md:text-base mt-2 max-w-md mx-auto">
+          Have an exciting project idea or want to collaborate? Drop a message!
+        </p>
+      </motion.div>
+
+      <div className="grid lg:grid-cols-12 gap-10 items-start">
+        {/* Contact Information - Left Side Grid */}
+        <motion.div 
+          className="lg:col-span-5 space-y-8"
+          initial={{ opacity: 0, x: -30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <div className="bg-base-200/40 border border-base-content/5 p-8 rounded-2xl backdrop-blur-md">
+            <h3 className="text-2xl font-bold text-base-content mb-4">
+              Let's Connect & Build
+            </h3>
+            <p className="text-base-content/75 text-sm md:text-base leading-relaxed mb-8">
+              I'm always open to discussing web systems, API architectures, or enterprise-scale integrations. Feel free to connect via direct channels or social loops.
+            </p>
+
+            {/* Interactive Detail Cards */}
+            <div className="space-y-4">
+              {contactInfo.map((info, index) => {
+                const CardWrapper = info.link ? "a" : "div";
+                return (
+                  <CardWrapper
+                    key={index}
+                    href={info.link || undefined}
+                    className={`group flex items-center gap-4 p-4 bg-base-100/60 border border-base-content/5 rounded-xl transition-all duration-300 ${
+                      info.link ? "hover:border-primary/20 hover:bg-base-100 hover:shadow-md hover:-translate-y-0.5" : ""
+                    }`}
+                  >
+                    <div className="flex items-center justify-center w-12 h-12 bg-primary/10 text-primary rounded-xl text-xl group-hover:bg-primary group-hover:text-primary-content transition-all duration-300 shrink-0">
+                      {info.icon}
+                    </div>
+                    <div className="min-w-0">
+                      <h4 className="text-xs font-bold text-base-content/40 uppercase tracking-wider">
+                        {info.title}
+                      </h4>
+                      <p className="text-sm md:text-base font-semibold text-base-content/85 truncate mt-0.5">
+                        {info.value}
+                      </p>
+                    </div>
+                  </CardWrapper>
+                );
+              })}
+            </div>
+
+            {/* Premium Icon Social Strip */}
+            <div className="mt-8 pt-6 border-t border-base-content/5">
+              <h4 className="text-xs font-bold text-base-content/40 uppercase tracking-wider mb-4">
+                Social Networks
+              </h4>
+              <div className="flex gap-3">
+                {socialLinks.map((social, index) => (
+                  <motion.a
+                    key={index}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center w-11 h-11 bg-base-100 border border-base-content/15 rounded-xl text-base-content/70 hover:text-primary hover:border-primary hover:shadow-md hover:shadow-primary/5 transition-all"
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    {social.icon}
+                  </motion.a>
+                ))}
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Dynamic Communication Form - Right Side Grid */}
+        <motion.div 
+          className="lg:col-span-7"
+          initial={{ opacity: 0, x: 30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+        >
+          <div className="bg-base-200/40 border border-base-content/5 p-6 md:p-8 rounded-2xl backdrop-blur-md shadow-sm">
+            <h3 className="text-xl md:text-2xl font-bold text-base-content mb-6">
+              Send an Instant Message
             </h3>
 
-            {/* Status Messages */}
-            {submitStatus === "success" && (
-              <div className="mb-6 p-4 bg-base-100 border border-primary/40 text-green-500 rounded-md">
-                <p className="text-sm sm:text-base">
-                  {" "}
-                  Message sent successfully! I'll get back to you soon.
-                </p>
-              </div>
-            )}
+            {/* Status Notifications Layer */}
+            <AnimatePresence mode="wait">
+              {submitStatus && (
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  exit={{ opacity: 0, height: 0 }}
+                  className={`mb-6 p-4 rounded-xl border font-medium text-sm md:text-base ${
+                    submitStatus === "success"
+                      ? "bg-success/10 border-success/25 text-success"
+                      : "bg-error/10 border-error/25 text-error"
+                  }`}
+                >
+                  {submitStatus === "success"
+                    ? "🎉 Message securely delivered! I'll get back to you shortly."
+                    : `⚠️ Delivery roadblock. Please shoot a direct message to mdsifat978@gmail.com`}
+                </motion.div>
+              )}
+            </AnimatePresence>
 
-            {submitStatus === "error" && (
-              <div className="mb-6 p-4 bg-base-100 border border-primary/40 text-red-500 rounded-md">
-                <p className="text-sm sm:text-base">
-                  Failed to send message. Please contact me directly at
-                  mdsifat978@gmail.com
-                </p>
-              </div>
-            )}
-
-            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
-              <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
+            {/* Core Action Form */}
+            <form onSubmit={handleSubmit} className="space-y-5">
+              <div className="grid md:grid-cols-2 gap-5">
                 <div>
-                  <label
-                    htmlFor="name"
-                    className="block text-sm font-medium text-secondary mb-2"
-                  >
-                    Name
+                  <label htmlFor="name" className="block text-xs font-bold text-base-content/50 uppercase tracking-wider mb-2">
+                    Your Name
                   </label>
                   <input
                     type="text"
@@ -195,15 +263,12 @@ const Contact = () => {
                     required
                     disabled={isSubmitting}
                     className={inputBase}
-                    placeholder="Your name"
+                    placeholder="John Doe"
                   />
                 </div>
                 <div>
-                  <label
-                    htmlFor="email"
-                    className="block text-sm font-medium text-secondary mb-2"
-                  >
-                    Email
+                  <label htmlFor="email" className="block text-xs font-bold text-base-content/50 uppercase tracking-wider mb-2">
+                    Your Email
                   </label>
                   <input
                     type="email"
@@ -214,16 +279,14 @@ const Contact = () => {
                     required
                     disabled={isSubmitting}
                     className={inputBase}
-                    placeholder="you@example.com"
+                    placeholder="john@example.com"
                   />
                 </div>
               </div>
+
               <div>
-                <label
-                  htmlFor="subject"
-                  className="block text-sm font-medium text-secondary mb-2"
-                >
-                  Subject
+                <label htmlFor="subject" className="block text-xs font-bold text-base-content/50 uppercase tracking-wider mb-2">
+                  Subject Focus
                 </label>
                 <input
                   type="text"
@@ -234,15 +297,13 @@ const Contact = () => {
                   required
                   disabled={isSubmitting}
                   className={inputBase}
-                  placeholder="What's this about?"
+                  placeholder="Project Collaboration Opportunity"
                 />
               </div>
+
               <div>
-                <label
-                  htmlFor="message"
-                  className="block text-sm font-medium text-secondary mb-2"
-                >
-                  Message
+                <label htmlFor="message" className="block text-xs font-bold text-base-content/50 uppercase tracking-wider mb-2">
+                  Detailed Message
                 </label>
                 <textarea
                   id="message"
@@ -252,84 +313,23 @@ const Contact = () => {
                   required
                   rows="5"
                   disabled={isSubmitting}
-                  className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-base-100 border border-primary/20 rounded-md focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300 text-secondary placeholder-secondary/50 resize-none disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base"
-                  placeholder="Tell me about your project or just say hello!"
+                  className={`${inputBase} resize-none min-h-[140px]`}
+                  placeholder="Elaborate on your conceptual specs, targets, or technical ecosystem..."
                 />
               </div>
-              <Button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full disabled:cursor-not-allowed disabled:transform-none text-sm sm:text-base"
-              >
-                {isSubmitting ? "Sending..." : "Send Message"}
-              </Button>
+
+              <motion.div whileHover={{ scale: 0.85 }} whileTap={{ scale: 0.80 }} className="pt-2">
+                <Button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full py-3.5 text-white shadow-lg shadow-primary/10 text-sm md:text-base font-bold select-none"
+                >
+                  {isSubmitting ? "Processing Handshake..." : "Transmit Message"}
+                </Button>
+              </motion.div>
             </form>
           </div>
-
-          {/* Contact Information - Right Side */}
-          <div className="space-y-6 sm:space-y-8">
-            <div>
-              <h3 className="text-xl sm:text-2xl font-bold text-primary mb-4 sm:mb-6">
-                Let's Connect
-              </h3>
-              <p className="text-secondary/80 text-sm md:text-base">
-                {" "}
-                Would love to discuss your next project. Whether it's a
-                collaboration, consultation, or just a friendly chat about tech,
-                I'm here to help!
-              </p>
-            </div>
-
-            {/* Contact Info Cards */}
-            <div className="space-y-3 sm:space-y-4">
-              {contactInfo.map((info, index) => (
-                <a
-                  key={index}
-                  // href={info.link}
-                  className="group flex items-center gap-3 sm:gap-4 p-3 sm:p-4 bg-gradient-to-bl from-base-200/15 to-base-200/40 backdrop-blur-sm  rounded-md border border-primary/20 hover:shadow-md hover:shadow-primary/20 hover:border-primary/40 transition-all duration-300 transform hover:-translate-y-1"
-                >
-                  <div className="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 bg-primary/10 rounded-md group-hover:bg-primary/20 transition-colors duration-300">
-                    <div className="text-primary group-hover:scale-110 transition-transform duration-300">
-                      {info.icon}
-                    </div>
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <h4 className="font-semibold text-secondary group-hover:text-secondary/90 transition-colors duration-300 text-sm sm:text-base">
-                      {info.title}
-                    </h4>
-                    <p className="text-secondary/80 group-hover:text-secondary/70 transition-colors duration-300 text-xs sm:text-sm truncate">
-                      {info.value}
-                    </p>
-                  </div>
-                </a>
-              ))}
-            </div>
-
-            {/* Social Links */}
-
-            {/* Social Links */}
-            <div>
-              <h4 className="text-lg font-semibold text-secondary mb-4">
-                Catch Me
-              </h4>
-              <div className="flex gap-4">
-                {socialLinks.map((social, index) => (
-                  <a
-                    key={index}
-                    href={social.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`group flex items-center justify-center w-10 h-10 bg-base-200/50 backdrop-blur-sm rounded-md border border-primary/20 text-secondary/80 hover:shadow-lg hover:shadow-primary/20 hover:border-primary/40 transition-all duration-300 transform hover:-translate-y-1 ${social.color}`}
-                  >
-                    <div className="group-hover:scale-110 transition-transform duration-300">
-                      {social.icon}
-                    </div>
-                  </a>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
