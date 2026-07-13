@@ -61,7 +61,7 @@ const Skills = () => {
       </motion.div>
 
       {/* Sweet Minimal Flex Grid Layout */}
-      <div className="flex flex-wrap gap-3 justify-start items-center">
+      <div className="flex flex-wrap gap-3 justify-center items-center">
         {skills.map((skill, index) => (
           <motion.div
             key={index}

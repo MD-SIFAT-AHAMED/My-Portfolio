@@ -22,7 +22,7 @@ const About = () => {
   return (
     <section 
       id="/about" 
-      className="relative px-6 max-w-6xl mx-auto w-full overflow-hidden scroll-mt-20 py-16 md:py-20"
+      className="relative px-6 max-w-6xl mx-auto w-full overflow-hidden scroll-mt-20 py-6 md:py-20"
     >
       {/* Background Ambient Blur - Synced with Contact system */}
       <div className="absolute top-0 left-10 w-80 h-80 bg-primary/5 blur-[120px] rounded-full -z-10" />

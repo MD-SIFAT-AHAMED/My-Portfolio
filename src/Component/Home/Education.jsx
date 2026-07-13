@@ -30,7 +30,7 @@ const Education = () => {
   ];
 
   return (
-    <section id="/education" className="px-6 py-20 max-w-4xl mx-auto">
+    <section id="/education" className="px-6 py-6 md:py-20 max-w-4xl mx-auto">
       {/* Centered Heading Layout Matching the Entire Build */}
       <motion.div
         className="mb-16"

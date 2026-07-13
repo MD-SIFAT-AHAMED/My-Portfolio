@@ -11,7 +11,7 @@ export function Experience() {
         "Software Developer with a strong frontend foundation, contributing to national-scale projects like Rapid Pass and MRT. Experienced in deployment, client support, troubleshooting, and data analysis, while gradually contributing to development. Skilled in React.js for frontend and expanding backend expertise with Java (Spring Boot), focused on building scalable and efficient systems.",
     },
     {
-      role: "Web Development Intern",
+      role: "Web Developer ( Intern )",
       company: "Daffodil International Professional Training Institute (DIPTI)",
       period: "Jun 2024 — Sep 2024",
       description:
@@ -20,7 +20,7 @@ export function Experience() {
   ];
 
   return (
-    <section id="experience" className="px-6 py-20 max-w-4xl mx-auto">
+    <section id="experience" className="px-6 py-6 md:py-20 max-w-4xl mx-auto">
       {/* Centered Heading Layout Matching the Setup */}
       <motion.div
         className="mb-16"
@@ -44,7 +44,7 @@ export function Experience() {
             transition={{ duration: 0.4, delay: index * 0.1 }}
           >
             {/* Timeline Period Column */}
-            <div className="text-xs font-medium tracking-wide text-base-content/50 lowercase">
+            <div className="text-xs font-medium tracking-wide text-base-content/50 ">
               {e.period}
             </div>
 
