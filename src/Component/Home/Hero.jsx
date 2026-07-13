@@ -1,43 +1,44 @@
+import React from "react";
+import { motion } from "framer-motion";
 import Lottie from "lottie-react";
 import coding from "../../assets/lottis/conding.json";
 import Button from "../Shared/Ui/Button";
 import { Typewriter } from "react-simple-typewriter";
 import AnimatedSocialIcon from "../Shared/AnimatedSocialIcon/AnimatedSocialIcon";
-import { motion } from "framer-motion";
-
-// import resume from "../../assets/resume.pdf";
 
 const Hero = () => {
   return (
-    <section className="relative flex flex-col-reverse md:flex-row items-center justify-between gap-10 px-4 md:px-10 lg:px-16 mt-24 md:mt-40 overflow-hidden">
-      {/* Background Blur */}
-      <div className="absolute top-10 left-0 w-72 h-72 bg-primary/20 blur-3xl rounded-full -z-10"></div>
-      <div className="absolute bottom-0 right-0 w-72 h-72 bg-primary/10 blur-3xl rounded-full -z-10"></div>
+    <section 
+      id="/home" 
+      className="relative px-6 max-w-5xl mx-auto w-full overflow-hidden flex flex-col-reverse md:flex-row items-center justify-between gap-8 mt-20 md:mt-28 pb-10"
+    >
+      {/* Background Ambient Blur */}
+      <div className="absolute top-10 left-10 w-64 h-64 bg-primary/5 blur-[100px] rounded-full -z-10" />
 
-      {/* Left Content */}
+      {/* Left Content Column */}
       <motion.div
-        className="flex-1 flex flex-col items-start gap-5"
-        initial={{ opacity: 0, x: -60 }}
+        className="flex-grow flex-[1.2] flex flex-col items-start gap-4 w-full"
+        initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8 }}
+        transition={{ duration: 0.5 }}
       >
-        {/* Small Intro */}
-        <p className="text-primary text-lg font-semibold tracking-wide">
-          Hello! I am,
+        {/* Intro Badge */}
+        <p className="text-primary text-xs md:text-sm font-bold uppercase tracking-widest">
+          Hello World, I am
         </p>
 
-        {/* Name */}
+        {/* Refactored Clean Name Heading */}
         <motion.h1
-          className="text-3xl md:text-5xl font-extrabold leading-tight text-base-content"
-          initial={{ opacity: 0, y: 20 }}
+          className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight text-base-content select-none"
+          initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.6 }}
+          transition={{ delay: 0.1, duration: 0.4 }}
         >
-          MD SIFAT <span className="text-primary drop-shadow-lg">AHAMED</span>
+          MD SIFAT <span className="text-primary drop-shadow-sm">AHAMED</span>
         </motion.h1>
 
-        {/* Typewriter */}
-        <h2 className="text-lg md:text-2xl font-medium text-base-content/80">
+        {/* Scaled Down Typewriter Track */}
+        <div className="h-6 md:h-8 text-base md:text-xl font-semibold text-base-content/85">
           <Typewriter
             words={[
               "Software Developer",
@@ -48,65 +49,72 @@ const Hero = () => {
             loop={100}
             cursor
             cursorStyle="|"
-            typeSpeed={90}
-            deleteSpeed={50}
+            typeSpeed={80}
+            deleteSpeed={40}
+            delaySpeed={1500}
           />
-        </h2>
+        </div>
 
-        {/* Description */}
+        {/* Balanced Context Block */}
         <motion.p
-          className="text-base md:text-lg text-base-content/70 max-w-2xl leading-relaxed"
-          initial={{ opacity: 0, y: 20 }}
+          className="text-xs md:text-sm leading-relaxed text-base-content/75 max-w-lg bg-base-200/20 border border-base-content/5 p-4 md:p-5 rounded-xl backdrop-blur-sm"
+          initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.6 }}
+          transition={{ delay: 0.2, duration: 0.4 }}
         >
-          Passionate about building modern, scalable, and user-focused web
-          applications using React.js, Node.js, and Java Spring Boot. Currently
-          working at DataSoft Systems Bangladesh Ltd., contributing to
-          real-world enterprise and national-scale systems including Rapid Pass
-          and MRT projects.
+          Passionate about engineering clean user interfaces and modular backend systems. 
+          Currently working at <span className="font-semibold text-base-content">DataSoft Systems Bangladesh Ltd.</span>, 
+          contributing to mission-critical infrastructure including national <span className="font-medium text-primary">Rapid Pass</span> and mass transit systems.
         </motion.p>
 
-        {/* Social Icons */}
+        {/* Social Bar */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.9, duration: 0.6 }}
+          transition={{ delay: 0.3, duration: 0.4 }}
         >
           <AnimatedSocialIcon />
         </motion.div>
 
-        {/* Buttons */}
+        {/* Call To Actions */}
         <motion.div
-          className="flex flex-wrap gap-4 mt-2"
-          initial={{ opacity: 0, y: 20 }}
+          className="flex flex-wrap gap-3 mt-1"
+          initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.1, duration: 0.6 }}
+          transition={{ delay: 0.4, duration: 0.4 }}
         >
-          <Button>
-            <a href="#contact">Contact Me</a>
-          </Button>
+          <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+            <Button className="shadow-md text-white shadow-primary/5 font-bold px-5 py-2.5 text-xs md:text-sm">
+              <a href="#/contact">Connect With Me</a>
+            </Button>
+          </motion.div>
 
-          <Button variant="outline">
-            <a href={"resume"} download>
-              Get Resume
-            </a>
-          </Button>
+          <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+            <Button 
+              variant="outline" 
+              className="font-bold border-base-content/15 hover:border-primary text-primary px-5 py-2.5 text-xs md:text-sm"
+            >
+              <a href="resume" download>
+                Get Resume
+              </a>
+            </Button>
+          </motion.div>
         </motion.div>
       </motion.div>
 
-      {/* Right Animation */}
+      {/* Right Graphic Column */}
       <motion.div
-        className="flex-1 flex justify-center items-center"
-        initial={{ opacity: 0, x: 60 }}
+        className="flex-1 w-full flex justify-center items-center"
+        initial={{ opacity: 0, x: 20 }}
         animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8, delay: 0.3 }}
+        transition={{ duration: 0.5, delay: 0.1 }}
       >
-        <div className="w-full max-w-md md:max-w-lg">
+        <div className="w-full max-w-xs md:max-w-sm lg:max-w-md relative group">
+          <div className="absolute inset-0 bg-primary/5 blur-[50px] rounded-full" />
           <Lottie
             animationData={coding}
             loop={true}
-            className="w-full h-[260px] md:h-[420px]"
+            className="w-full h-[200px] sm:h-[260px] md:h-[320px] lg:h-[360px] relative z-10 pointer-events-none"
           />
         </div>
       </motion.div>

@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { FaGraduationCap } from "react-icons/fa";
 import SectionHeading from "../Shared/SectionHeading/SectionHeading";
 
 const Education = () => {
@@ -31,86 +30,54 @@ const Education = () => {
   ];
 
   return (
-    <section className="relative px-6 py-20 max-w-5xl mx-auto overflow-hidden" id="/education">
-      {/* Subtle Background Fluid Layer */}
-      <div className="absolute top-1/3 -right-20 w-80 h-80 bg-primary/5 blur-[100px] rounded-full -z-10" />
-
-      {/* Redesigned Animated Section Header */}
+    <section id="/education" className="px-6 py-20 max-w-4xl mx-auto">
+      {/* Centered Heading Layout Matching the Entire Build */}
       <motion.div
-        className="mb-16 text-center"
-        initial={{ opacity: 0, y: -20 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        className="mb-16"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
+        transition={{ duration: 0.5 }}
       >
         <SectionHeading>Education Journey</SectionHeading>
-        <p className="text-base-content/60 text-sm mt-2 max-w-md mx-auto">
-          An overview of my academic foundation and technical specializations.
-        </p>
       </motion.div>
 
-      {/* Main Timeline Layout */}
-      <div className="relative border-l-2 border-base-content/10 ml-4 md:ml-32 pl-8 md:pl-12 space-y-12">
+      {/* Sweet Minimal Layered Rows */}
+      <div className="border-t border-base-content/10">
         {educationData.map((edu, index) => (
           <motion.div
             key={index}
-            className="relative"
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, delay: index * 0.15 }}
+            className="grid md:grid-cols-4 gap-4 py-8 border-b border-base-content/10 items-start"
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: index * 0.1 }}
           >
-            {/* Animated Milestone Timeline Icon Node */}
-            <motion.div 
-              className="absolute -left-[45px] md:-left-[61px] top-1.5 w-8 h-8 md:w-10 md:h-10 rounded-full bg-primary text-primary-content flex items-center justify-center shadow-lg shadow-primary/20 z-10 border-4 border-base-100"
-              whileHover={{ scale: 1.15 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
-              <FaGraduationCap className="text-sm md:text-base" />
-            </motion.div>
+            {/* Timeline Period Column */}
+            <div className="text-xs font-medium tracking-wide text-base-content/50 lowercase">
+              {edu.year}
+            </div>
 
-            {/* Premium Frosted Educational Details Card */}
-            <div className="group bg-base-200/40 hover:bg-base-200/70 border border-base-content/5 hover:border-primary/20 p-6 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 backdrop-blur-sm relative flex flex-col md:flex-row md:items-start justify-between gap-4">
-              
-              <div className="space-y-2">
-                {/* Year Pill Display (Responsive Layout Shift) */}
-                <div className="flex flex-wrap items-center gap-2">
-                  <span className="text-xs font-semibold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-primary/10 text-primary">
-                    {edu.year}
-                  </span>
-                  {edu.status === "In Progress" && (
-                    <span className="text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-full bg-success/10 text-success animate-pulse">
-                      Running
-                    </span>
-                  )}
-                </div>
+            {/* Degree Details & Institutional Core Context */}
+            <div className="md:col-span-2 space-y-1">
+              <h3 className="text-base font-medium text-base-content/90 flex items-center gap-2">
+                {edu.level}
+                {edu.status === "In Progress" && (
+                  <span className="inline-block w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+                )}
+              </h3>
+              <p className="text-sm text-primary ">{edu.institute}</p>
+              <p className="text-xs text-base-content/40  pt-0.5">{edu.group}</p>
+            </div>
 
-                {/* Degree & Level */}
-                <h3 className="text-xl font-bold text-base-content group-hover:text-primary transition-colors duration-200">
-                  {edu.level}
-                </h3>
-
-                {/* Institution Name */}
-                <p className="text-base font-medium text-base-content/85">
-                  {edu.institute}
-                </p>
-
-                {/* Field of Study Description Line */}
-                <div className="flex items-center gap-2 text-sm text-base-content/60 mt-1">
-                  <span>{edu.group}</span>
-                </div>
-              </div>
-
-              {/* Clean Grade / Result Tracker Grid Box */}
-              <div className="md:self-start bg-base-300/50 border border-base-content/5 px-4 py-2 rounded-xl text-center min-w-[100px] backdrop-blur-sm group-hover:border-primary/10 transition-colors">
-                <span className="block text-[10px] uppercase font-bold tracking-wider text-base-content/40">
-                  Result
-                </span>
-                <span className="text-sm font-bold text-base-content/80">
-                  {edu.result}
-                </span>
-              </div>
-
+            {/* Performance Grade Metrics Box (Right Aligned on Desktop) */}
+            <div className="md:text-right space-y-0.5">
+              <span className="block text-[10px] font-medium tracking-wider text-base-content/30 uppercase">
+                result
+              </span>
+              <span className="text-sm font-medium text-base-content/70">
+                {edu.result}
+              </span>
             </div>
           </motion.div>
         ))}

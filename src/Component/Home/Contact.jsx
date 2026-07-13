@@ -21,34 +21,29 @@ const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null); // 'success' | 'error' | null
 
-  // Dynamic EmailJS script attachment layer
   useEffect(() => {
+    if (window.emailjs) {
+      window.emailjs.init(import.meta.env.VITE_EMAIL_PUBLIC_KEY);
+      return;
+    }
+
     const script = document.createElement("script");
-    script.src = "https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js";
+    script.src =
+      "https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js";
     script.async = true;
     script.onload = () => {
       if (window.emailjs) {
         window.emailjs.init(import.meta.env.VITE_EMAIL_PUBLIC_KEY);
       }
     };
-    script.onerror = () => {
-      console.error("Failed to load EmailJS");
-    };
     document.head.appendChild(script);
-
-    return () => {
-      const existingScript = document.querySelector('script[src*="email.min.js"]');
-      if (existingScript) {
-        document.head.removeChild(existingScript);
-      }
-    };
   }, []);
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
+    setFormData((prev) => ({
+      ...prev,
       [e.target.name]: e.target.value,
-    });
+    }));
   };
 
   const handleSubmit = async (e) => {
@@ -57,7 +52,7 @@ const Contact = () => {
     setSubmitStatus(null);
 
     if (!window.emailjs) {
-      console.error("EmailJS not loaded");
+      console.error("EmailJS SDK missing");
       setSubmitStatus("error");
       setIsSubmitting(false);
       return;
@@ -74,13 +69,13 @@ const Contact = () => {
           subject: formData.subject,
           message: formData.message,
           reply_to: formData.email,
-        }
+        },
       );
 
       setSubmitStatus("success");
       setFormData({ name: "", email: "", subject: "", message: "" });
     } catch (error) {
-      console.error("Email sending failed:", error);
+      console.error("Email bridge exception:", error);
       setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);
@@ -127,12 +122,15 @@ const Contact = () => {
     "w-full px-4 py-3 bg-base-100 border border-base-content/10 rounded-xl focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all duration-300 text-base-content placeholder-base-content/40 text-sm md:text-base font-medium disabled:opacity-50";
 
   return (
-    <section id="/contact" className="relative px-6 max-w-6xl mx-auto w-full overflow-hidden scroll-mt-20">
-      {/* Background Fluid Ambient Blob */}
+    <section
+      id="/contact"
+      className="relative px-6 max-w-6xl mx-auto w-full overflow-hidden scroll-mt-20"
+    >
+      {/* Background Ambient Blur */}
       <div className="absolute bottom-0 left-10 w-80 h-80 bg-primary/5 blur-[120px] rounded-full -z-10" />
 
       {/* Header Container */}
-      <motion.div 
+      <motion.div
         className="text-center mb-16"
         initial={{ opacity: 0, y: -20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -146,8 +144,8 @@ const Contact = () => {
       </motion.div>
 
       <div className="grid lg:grid-cols-12 gap-10 items-start">
-        {/* Contact Information - Left Side Grid */}
-        <motion.div 
+        {/* Contact Information - Left Side */}
+        <motion.div
           className="lg:col-span-5 space-y-8"
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -159,38 +157,43 @@ const Contact = () => {
               Let's Connect & Build
             </h3>
             <p className="text-base-content/75 text-sm md:text-base leading-relaxed mb-8">
-              I'm always open to discussing web systems, API architectures, or enterprise-scale integrations. Feel free to connect via direct channels or social loops.
+              I'm always open to discussing web systems, API architectures, or
+              enterprise-scale integrations. Feel free to connect via direct
+              channels or social loops.
             </p>
 
             {/* Interactive Detail Cards */}
             <div className="space-y-4">
-              {contactInfo.map((info, index) => {
-                const CardWrapper = info.link ? "a" : "div";
-                return (
-                  <CardWrapper
-                    key={index}
-                    href={info.link || undefined}
-                    className={`group flex items-center gap-4 p-4 bg-base-100/60 border border-base-content/5 rounded-xl transition-all duration-300 ${
-                      info.link ? "hover:border-primary/20 hover:bg-base-100 hover:shadow-md hover:-translate-y-0.5" : ""
-                    }`}
-                  >
-                    <div className="flex items-center justify-center w-12 h-12 bg-primary/10 text-primary rounded-xl text-xl group-hover:bg-primary group-hover:text-primary-content transition-all duration-300 shrink-0">
-                      {info.icon}
-                    </div>
-                    <div className="min-w-0">
-                      <h4 className="text-xs font-bold text-base-content/40 uppercase tracking-wider">
-                        {info.title}
-                      </h4>
+              {contactInfo.map((info, index) => (
+                <div
+                  key={index}
+                  className="group flex items-center gap-4 p-4 bg-base-100/60 border border-base-content/5 rounded-xl transition-all duration-300"
+                >
+                  <div className="flex items-center justify-center w-12 h-12 bg-primary/10 text-primary rounded-xl text-xl group-hover:bg-primary group-hover:text-primary-content transition-all duration-300 shrink-0">
+                    {info.icon}
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <h4 className="text-xs font-bold text-base-content/40 uppercase tracking-wider">
+                      {info.title}
+                    </h4>
+                    {info.link ? (
+                      <a
+                        href={info.link}
+                        className="text-sm md:text-base font-semibold text-base-content/85 truncate mt-0.5 block hover:text-primary transition-colors duration-200"
+                      >
+                        {info.value}
+                      </a>
+                    ) : (
                       <p className="text-sm md:text-base font-semibold text-base-content/85 truncate mt-0.5">
                         {info.value}
                       </p>
-                    </div>
-                  </CardWrapper>
-                );
-              })}
+                    )}
+                  </div>
+                </div>
+              ))}
             </div>
 
-            {/* Premium Icon Social Strip */}
+            {/* Social Strip */}
             <div className="mt-8 pt-6 border-t border-base-content/5">
               <h4 className="text-xs font-bold text-base-content/40 uppercase tracking-wider mb-4">
                 Social Networks
@@ -214,8 +217,8 @@ const Contact = () => {
           </div>
         </motion.div>
 
-        {/* Dynamic Communication Form - Right Side Grid */}
-        <motion.div 
+        {/* Form Grid - Right Side */}
+        <motion.div
           className="lg:col-span-7"
           initial={{ opacity: 0, x: 30 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -227,7 +230,7 @@ const Contact = () => {
               Send an Instant Message
             </h3>
 
-            {/* Status Notifications Layer */}
+            {/* Status Messages */}
             <AnimatePresence mode="wait">
               {submitStatus && (
                 <motion.div
@@ -247,11 +250,14 @@ const Contact = () => {
               )}
             </AnimatePresence>
 
-            {/* Core Action Form */}
+            {/* Contact Form */}
             <form onSubmit={handleSubmit} className="space-y-5">
               <div className="grid md:grid-cols-2 gap-5">
                 <div>
-                  <label htmlFor="name" className="block text-xs font-bold text-base-content/50 uppercase tracking-wider mb-2">
+                  <label
+                    htmlFor="name"
+                    className="block text-xs font-bold text-base-content/50 uppercase tracking-wider mb-2"
+                  >
                     Your Name
                   </label>
                   <input
@@ -267,7 +273,10 @@ const Contact = () => {
                   />
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-xs font-bold text-base-content/50 uppercase tracking-wider mb-2">
+                  <label
+                    htmlFor="email"
+                    className="block text-xs font-bold text-base-content/50 uppercase tracking-wider mb-2"
+                  >
                     Your Email
                   </label>
                   <input
@@ -285,7 +294,10 @@ const Contact = () => {
               </div>
 
               <div>
-                <label htmlFor="subject" className="block text-xs font-bold text-base-content/50 uppercase tracking-wider mb-2">
+                <label
+                  htmlFor="subject"
+                  className="block text-xs font-bold text-base-content/50 uppercase tracking-wider mb-2"
+                >
                   Subject Focus
                 </label>
                 <input
@@ -302,7 +314,10 @@ const Contact = () => {
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-xs font-bold text-base-content/50 uppercase tracking-wider mb-2">
+                <label
+                  htmlFor="message"
+                  className="block text-xs font-bold text-base-content/50 uppercase tracking-wider mb-2"
+                >
                   Detailed Message
                 </label>
                 <textarea
@@ -318,15 +333,23 @@ const Contact = () => {
                 />
               </div>
 
-              <motion.div whileHover={{ scale: 0.85 }} whileTap={{ scale: 0.80 }} className="pt-2">
-                <Button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full py-3.5 text-white shadow-lg shadow-primary/10 text-sm md:text-base font-bold select-none"
+              <div className="pt-2">
+                <motion.div
+                  whileHover={{
+                    y: -2,
+                    transition: { duration: 0.2, ease: "easeOut" },
+                  }}
+                  whileTap={{ y: 0 }}
                 >
-                  {isSubmitting ? "Processing Handshake..." : "Transmit Message"}
-                </Button>
-              </motion.div>
+                  <Button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full py-3.5 text-white shadow-lg shadow-primary/10 text-sm md:text-base font-bold select-none"
+                  >
+                    {isSubmitting ? "Sending..." : "Send Message"}
+                  </Button>
+                </motion.div>
+              </div>
             </form>
           </div>
         </motion.div>
